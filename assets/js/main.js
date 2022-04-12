@@ -32,7 +32,6 @@ Prima scriviamo nei commenti la logica in italiano e poi traduciamo in codice. c
 Quando un pezzo di codice funziona, chiediamoci se possiamo scomporlo in funzioni più piccole.
 */
 
-
 /* 
 Milestone 1
 
@@ -54,15 +53,14 @@ let posts = [];
 // creare una funzione che restituisce un numero casuale
 function genRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+}
 
 // creare un ciclo for che crea un oggetto con i tuoi valori e lo pusha ogni volta nell array
 
 for (let i = 0; i < 3; i++) {
-
   // creo numero per id
   let id_number = genRandomNumber(1, 100);
- 
+
   //creare un array di nomi da associare a nome autore
   let nomi_autori = [
     "Marco",
@@ -73,6 +71,9 @@ for (let i = 0; i < 3; i++) {
     "Maria",
     "Federica",
     "Gabriella",
+    "Francesco",
+    "Mattia",
+    "Noemi",
   ];
   let posizione_nome_autore = Math.floor(Math.random() * nomi_autori.length);
   let nome_autore = nomi_autori[posizione_nome_autore]; // nome random che arriva dall'array di nomi
@@ -88,20 +89,22 @@ for (let i = 0; i < 3; i++) {
   let like_number = genRandomNumber(1, 1000);
 
   // creare un oggetto posts
-   let post = {
-     id: i + 1,
-     nomeAutore: nome_autore,
-     fotoAutore: "https://unsplash.it/300/300?image=",
-     data: data_post,
-     testo:
-       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, nostrum dolorem. Qui amet doloremque ipsam provident veniam fugit corporis.",
-     immagine: "https://picsum.photos/300/300",
-     like: like_number,
-   };
+  let post = {
+    id: i + 1,
+    nomeAutore: nome_autore,
+    fotoAutore: "https://unsplash.it/300/300?image=",
+    data: data_post,
+    testo:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, nostrum dolorem. Qui amet doloremque ipsam provident veniam fugit corporis.",
+    immagine: "https://picsum.photos/300/300",
+    like: like_number,
+  };
 
-     posts.push(post);
-   /* console.log(posts); */
-};
+  posts.push(post);
+  /* console.log(posts); */
+}
+
+console.log(posts);
 
 //creare un ciclo forEach per ottenere informazioni dell'oggetto
 let post = posts.forEach((post) => {
@@ -126,14 +129,14 @@ let post = posts.forEach((post) => {
             <img src="${post.fotoAutore}" class="card-img-top p-4" alt="...">
 
             <div class="button_card d-flex justify-content-around mb-3">
-                <a href="#" class="like">
+                <button class="like">
                     <i class="fa-solid fa-thumbs-up"></i>
                     <span>Mi piace</span>
-                </a>
+                </button>
                 <a href="#" class="like">
                     <span>
                         Piace a 
-                        <strong>${post.like} </strong>
+                        <strong class="id_like">${post.like} </strong>
                         Persone
                     </span>
                 </a>
@@ -143,13 +146,22 @@ let post = posts.forEach((post) => {
   /* Milestone 2
 Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed. */
   container_card.insertAdjacentHTML("beforeend", card_markup);
+
+  let id_post = [];
+
+  //creo un eventListener che ascolta il click
+
+  let like = document.querySelector(".like");
+
+  like.addEventListener("click", function () {
+    like.classList.add("red");
+    let idLike = document.querySelector('.id_like');
+    idLike.innerHTML = post.like + 1;
+    id_post.push(post.id);
+  });
+
+  
 });
-
-
-
-
-
-
 
 /* 
 Milestone 3
@@ -158,11 +170,3 @@ Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e inc
 
 // ogni volta che clicco il mio like deve colorarsi di blu e il numero dei like deve aumentare
 
-//creo un eventListener che ascolta il click
-
-/* let like = document.querySelector('.like');
-like.addEventListener('click', function() {
-    
-}) */
-
-console.log(posts);
