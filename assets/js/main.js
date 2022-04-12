@@ -85,8 +85,7 @@ for (let i = 0; i < 3; i++) {
   let anno = genRandomNumber(2020, 2022);
   let data_post = `${giorno}/${mese}/${anno}`;
 
-  //creare un numero per i like random
-  let like_number = genRandomNumber(1, 1000);
+
 
   // creare un oggetto posts
   let post = {
@@ -97,14 +96,14 @@ for (let i = 0; i < 3; i++) {
     testo:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, nostrum dolorem. Qui amet doloremque ipsam provident veniam fugit corporis.",
     immagine: "https://picsum.photos/300/300",
-    like: like_number,
+    like: genRandomNumber(1, 1000),
   };
 
   posts.push(post);
   /* console.log(posts); */
 }
 
-console.log(posts);
+//console.log(posts);
 
 //creare un ciclo forEach per ottenere informazioni dell'oggetto
 let post = posts.forEach((post) => {
@@ -133,7 +132,7 @@ let post = posts.forEach((post) => {
                     <i class="fa-solid fa-thumbs-up"></i>
                     <span>Mi piace</span>
                 </button>
-                <a href="#" class="like">
+                <a href="#" class="like_count">
                     <span>
                         Piace a 
                         <strong class="id_like">${post.like} </strong>
@@ -147,21 +146,39 @@ let post = posts.forEach((post) => {
 Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed. */
   container_card.insertAdjacentHTML("beforeend", card_markup);
 
+});
+
+ //creo un eventListener che ascolta il click
+
   let id_post = [];
 
-  //creo un eventListener che ascolta il click
+let like = document.querySelectorAll(".like");
+//console.log(like);
 
-  let like = document.querySelector(".like");
-
-  like.addEventListener("click", function () {
-    like.classList.add("red");
-    let idLike = document.querySelector('.id_like');
-    idLike.innerHTML = post.like + 1;
-    id_post.push(post.id);
-  });
-
-  
-});
+like.forEach((element, index) =>{
+    //console.log(element);
+    //console.log(index);
+    element.addEventListener('click', function () {
+        element.classList.add('red');
+        let cards = document.querySelectorAll('.card');
+        //console.log(cards[index]);
+        let single_card = cards[index];
+        let likeCount = single_card.querySelector('.like_count');
+        //console.log(likeCount);
+        let id_card_click = posts[index].id;
+        //console.log(id_card_click);
+        id_post.push(id_card_click)
+        //console.log(id_post);
+        let like_count_click = posts[index].like;
+        //console.log(like_count_click + 1);
+        likeCount.innerHTML = `
+        <span>
+            Piace a 
+            <strong class="id_like">${like_count_click + 1} </strong>
+            Persone
+            </span>`;
+    })
+})
 
 /* 
 Milestone 3
