@@ -114,7 +114,7 @@ let post = posts.forEach((post) => {
 
             <div class="card-body">
                 <div class="card_top d-flex">
-                    <img src="${post.immagine}" alt="" class="img-fluid rounded-circle" width="40">
+                    <img src="${post.fotoAutore}" alt="" class="img-fluid rounded-circle" width="40">
                     <div class="card_top_text">
                         <div class="nome fw-bold">${post.nomeAutore}</div>
                         <div class="data">${post.data}</div>
@@ -125,7 +125,7 @@ let post = posts.forEach((post) => {
                     ${post.testo}
                 </p>
             </div>
-            <img src="${post.fotoAutore}" class="card-img-top p-4" alt="...">
+            <img src="${post.immagine}" class="card-img-top p-4" alt="...">
 
             <div class="button_card d-flex justify-content-around mb-3">
                 <button class="like">
@@ -147,7 +147,11 @@ Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i 
   container_card.insertAdjacentHTML("beforeend", card_markup);
 
 });
+/* 
+Milestone 3
 
+Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+*/
  //creo un eventListener che ascolta il click
 
   let id_post = [];
@@ -178,12 +182,4 @@ like.forEach((element, index) =>{
             Persone
             </span>`;
     })
-})
-
-/* 
-Milestone 3
-Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
-*/
-
-// ogni volta che clicco il mio like deve colorarsi di blu e il numero dei like deve aumentare
-
+});
