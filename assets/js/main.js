@@ -49,16 +49,7 @@ Non è necessario creare date casuali
 Per le immagini va bene utilizzare qualsiasi servizio di placeholder ad es. Unsplash (https://unsplash.it/300/300?image=<id>)
 */
 
-let post = [
-  {
-    id: 1, // numero tra 1 e n casuale
-    nome_autore: "Marco", 
-    foto_autore: "https://unsplash.it/300/300?image=",
-    data: 02 / 04 / 2021, // new date
-    img: "https://unsplash.it/300/300?image=",
-    n_like: 80 // numero tra 1 e n casuale
-  },
-];
+let post = [];
 
 // creare una funzione che restituisce un numero casuale
 function genRandomNumber(min, max) {
@@ -68,7 +59,7 @@ function genRandomNumber(min, max) {
 
 // creare un ciclo for che crea un oggetto con i tuoi valori e lo pusha ogni volta nell array
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 2; i++) {
   // numero id
   let randomNumber = genRandomNumber(1, 100);
   //console.log(randomNumber);
@@ -93,15 +84,45 @@ for (let i = 0; i < 5; i++) {
   let mese = genRandomNumber(1, 12);
   let anno = genRandomNumber(2020, 2022);
   let data_post = `${giorno}/${mese}/${anno}`;
-  // stampa la data
-  let data = document.querySelector(".data");
-  data.innerHTML = `${data_post}`;
 
   //creare un numero per i like random
   let like = genRandomNumber(1, 1000);
 
   // creare una card (post) dove appendi tutti gli elementi random
+  const container_card = document.querySelector('.container');
   let card_markup = `
-  
-  `
+  <div class="card my-2" style="width: 30rem;">
+
+            <div class="card-body">
+                <div class="card_top d-flex">
+                    <img src="https://unsplash.it/300/300?image=" alt="" class="img-fluid rounded-circle" width="40">
+                    <div class="card_top_text">
+                        <div class="nome fw-bold">${nome_autore}</div>
+                        <div class="data">${data_post}</div>
+                    </div>
+                </div>
+
+                <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, nostrum dolorem. Qui amet doloremque ipsam provident veniam fugit corporis.
+                </p>
+            </div>
+            <img src="https://unsplash.it/300/300?image=" class="card-img-top p-4" alt="...">
+
+            <div class="button_card d-flex justify-content-around mb-3">
+                <a href="#" class="like">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <span>Mi piace</span>
+                </a>
+                <a href="#" class="like">
+                    <span>
+                        Piace a 
+                        <strong>${like} </strong>
+                        Persone
+                    </span>
+                </a>
+            </div>
+        </div>
+  `;
+  container_card.insertAdjacentHTML('beforeend', card_markup)
+
 }
