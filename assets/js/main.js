@@ -162,7 +162,9 @@ let like = document.querySelectorAll(".like");
 like.forEach((element, index) =>{
     //console.log(element);
     //console.log(index);
-    element.addEventListener('click', function () {
+    element.addEventListener('click', click);
+    
+    function click() {
         element.classList.add('red');
         let cards = document.querySelectorAll('.card');
         //console.log(cards[index]);
@@ -180,6 +182,7 @@ like.forEach((element, index) =>{
             Piace a 
             <strong class="id_like">${like_count_click + 1} </strong>
             Persone
-            </span>`;
-    })
+        </span>`;
+    }
 });
+
