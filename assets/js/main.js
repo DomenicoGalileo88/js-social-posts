@@ -165,7 +165,7 @@ like.forEach((element, index) =>{
     element.addEventListener('click', click);
     
     function click() {
-        element.classList.add('red');
+        element.classList.toggle('red');
         let cards = document.querySelectorAll('.card');
         //console.log(cards[index]);
         let single_card = cards[index];
@@ -177,12 +177,22 @@ like.forEach((element, index) =>{
         //console.log(id_post);
         let like_count_click = posts[index].like;
         //console.log(like_count_click + 1);
-        likeCount.innerHTML = `
+        
+        if (element.classList.contains('red')) {
+          likeCount.innerHTML = `
         <span>
             Piace a 
             <strong class="id_like">${like_count_click + 1} </strong>
             Persone
         </span>`;
+        } else {
+          likeCount.innerHTML = `
+        <span>
+            Piace a 
+            <strong class="id_like">${like_count_click} </strong>
+            Persone
+        </span>`;
+        }
     }
 });
 
